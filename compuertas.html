@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Compuertas de Energía</title>
+    <style>
+        /* Definir la animación del rayo */
+        @keyframes abrirCompuertas {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
+        }
+
+        @keyframes cerrarCompuertas {
+            0% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
+        }
+
+        /* Estilo para las compuertas */
+        .compuertas {
+            display: inline-block;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            overflow: hidden;
+        }
+
+        /* Estilo para el rayo */
+        .rayo {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, yellow, transparent);
+        }
+
+        /* Estilo para la animación de abrir compuertas */
+        .abrir .rayo {
+            animation: abrirCompuertas 1s forwards;
+        }
+
+        /* Estilo para la animación de cerrar compuertas */
+        .cerrar .rayo {
+            animation: cerrarCompuertas 1s forwards;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard de Compuertas de Energía</h1>
+    <p>Estado inicial: <span id="status">Abiertas</span></p>
+    <!-- Agregar las compuertas con el simbolo del rayo -->
+    <div class="compuertas" id="compuertas">
+        <div class="rayo"></div>
+    </div>
+    <button onclick="abrirCompuertas()">Abrir Compuertas</button>
+    <button onclick="cerrarCompuertas()">Cerrar Compuertas</button>
+
+    <script>
+        function abrirCompuertas() {
+            document.getElementById("compuertas").classList.add("abrir");
+            document.getElementById("compuertas").classList.remove("cerrar");
+            document.getElementById("status").innerText = "Abriendo compuertas...";
+        }
+
+        function cerrarCompuertas() {
+            document.getElementById("compuertas").classList.add("cerrar");
+            document.getElementById("compuertas").classList.remove("abrir");
+            document.getElementById("status").innerText = "Cerrando compuertas...";
+        }
+    </script>
+</body>
+</html>
+
